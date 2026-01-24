@@ -24,6 +24,24 @@
       overflow-x: hidden;
     }
 
+    /* Responsive line break utilities */
+    .pc-only {
+      display: inline;
+    }
+
+    .mobile-only {
+      display: none;
+    }
+
+    @media (max-width: 768px) {
+      .pc-only {
+        display: none;
+      }
+      .mobile-only {
+        display: inline;
+      }
+    }
+
     /* Header Navigation */
     .header {
       position: fixed;
@@ -404,6 +422,7 @@
       box-shadow: 0 0 40px rgba(204, 254, 64, 0.5);
       position: relative;
       overflow: hidden;
+      line-height: 1.8;
     }
 
     .hero-cta::before {
@@ -845,6 +864,7 @@
       color: rgba(255, 255, 255, 0.6);
       letter-spacing: 0.1em;
       margin-bottom: 20px;
+      line-height: 1.8;
     }
 
     .footer-copyright {
@@ -1016,10 +1036,6 @@
         margin-bottom: 8px;
       }
 
-      .benefit-description br {
-        display: none;
-      }
-
       .benefit-card {
         margin-bottom: 30px;
       }
@@ -1041,16 +1057,8 @@
         margin-bottom: 25px;
       }
 
-      .about-text br {
-        display: none;
-      }
-
       .about-highlight {
         margin-top: 35px;
-      }
-
-      .about-highlight br {
-        display: inline;
       }
     }
   </style>
@@ -1092,11 +1100,11 @@
         <div class="hero-date">2026.03.25 WED</div>
         <div class="hero-time">14:00 - 19:00</div>
         <div class="hero-reception">受付開始 13:00</div>
-        <div class="hero-location">ベルサール新宿セントラルパーク</div>
-        <div class="hero-location-sub">東京都新宿区西新宿６丁目１３−１<br>住友不動産新宿セントラルパークビル</div>
+        <div class="hero-location">ベルサール新宿<br class="mobile-only">セントラルパーク</div>
+        <div class="hero-location-sub">東京都新宿区西新宿６丁目１３−１<br>住友不動産新宿セントラル<br class="mobile-only">パークビル</div>
       </div>
 
-      <button class="hero-cta">FCオーナー様<br>トレーナー<br>店舗スタッフ<br>FIT PLACEに関わる全ての方へ</button>
+      <button class="hero-cta">FCオーナー様<br class="mobile-only"> / <br class="pc-only">トレーナー<br class="mobile-only"> / <br class="pc-only">店舗スタッフ<br class="mobile-only"> / <br class="pc-only">FIT PLACEに関わる<br class="mobile-only">全ての方へ</button>
     </div>
   </section>
 
@@ -1109,14 +1117,13 @@
     
     <div class="about-content">
       <p class="about-text scroll-animate fade-in-up delay-1">
-        日々、お客様の健康と笑顔のために尽力してくださっている<br>全てのFIT PLACE関係者の皆さまへ。<br>
+        日々、お客様の健康と笑顔のために<br class="pc-only">尽力してくださっている全てのFIT PLACE関係者の皆さまへ。
       </p>
       <p class="about-text scroll-animate fade-in-up delay-2">
-        FIT PLACE FESTIVAL 2026は、皆様の頑張りを讃え<br>仲間と共に新たな挑戦への想いを共有する特別な一日です。
+        FIT PLACE FESTIVAL 2026は、<br class="mobile-only">皆様の頑張りを讃え仲間と共に<br class="pc-only">新たな挑戦への想いを共有する<br class="mobile-only">特別な一日です。
       </p>
       <p class="about-text scroll-animate fade-in-up delay-3">
-        業界トップクラスのゲストによる特別セッション<br>激動の1年間の振り返り<br>
-        そして何より、同じ志を持つ仲間たちとの出会いと交流。
+        業界トップクラスのゲストによる<br class="mobile-only">特別セッション<br class="pc-only">激動の1年間の振り返り<br>そして何より、同じ志を持つ<br class="mobile-only">仲間たちとの出会いと交流。
       </p>
       <p class="about-highlight scroll-animate fade-in-up delay-4">
         2026年、さらなる高みへ。<br>共に、未来を創りましょう。
@@ -1140,9 +1147,7 @@
           <div class="benefit-number">01</div>
           <h3 class="benefit-title">CELEBRATE<br>SUCCESS</h3>
           <p class="benefit-description">
-            2025年の優秀店舗・優秀スタッフの表彰式を開催。<br>
-            トップパフォーマーたちの成功事例を直接聞き、<br>
-            あなた自身の成長のヒントを得られます。
+            2025年の優秀店舗・<br class="mobile-only">優秀スタッフの表彰式を開催。<br>トップパフォーマーたちの<br class="mobile-only">成功事例を直接聞き、あなた自身の成長の<br class="mobile-only">ヒントを得られます。
           </p>
           <p class="benefit-highlight">
             あなたも次の受賞者に。
@@ -1161,10 +1166,7 @@
           <div class="benefit-number">02</div>
           <h3 class="benefit-title">LEARN FROM<br>THE BEST</h3>
           <p class="benefit-description">
-            業界を牽引する<br>トップアスリート、トレーナーよる<br>
-            特別セッションの開催決定。<br>
-            最先端の知識と技術を学び<br>
-            明日からの指導に活かせます。
+            業界を牽引するトップアスリート、<br class="mobile-only">トレーナーよる特別セッションの<br class="mobile-only">開催決定。最先端の知識と技術を学び<br class="mobile-only">明日からの指導に活かせます。
           </p>
           <p class="benefit-highlight">
             成長の機会がここに。
@@ -1199,7 +1201,7 @@
               <div class="guest-title">筋肉界の最終兵器</div>
             </div>
             <div class="guest-description">
-              2025年ボディビル日本チャンピオン。<br>圧倒的なバルクで押し切る最強ボディビルダー。
+              2025年ボディビル日本チャンピオン。<br>圧倒的なバルクで押し切る<br class="mobile-only">最強ボディビルダー。
             </div>
           </div>
         </div>
@@ -1215,7 +1217,7 @@
               <div class="guest-title">力持ちよりおかずもち</div>
             </div>
             <div class="guest-description">
-              並み居る筋トレYouTuberもこぞってパーソナルを依頼する<br>日本で最も予約の取れないパーソナルトレーナー。
+              並み居る筋トレYouTuberも<br class="mobile-only">こぞってパーソナルを依頼する日本で最も予約の取れない<br class="mobile-only">パーソナルトレーナー。
             </div>
           </div>
         </div>
@@ -1232,7 +1234,7 @@
               <div class="guest-title">日本一強いアナウンサー</div>
             </div>
             <div class="guest-description">
-              空手初段の黒帯を所持し、瓦割りやハイキックを披露する動画が話題。<br>SNSの動画総再生数は4億回を超え。
+              空手初段の黒帯を所持し、<br class="mobile-only">瓦割りやハイキックを披露する<br class="mobile-only">動画が話題。SNSの動画総再生数は<br class="mobile-only">4億回を超え。
             </div>
           </div>
         </div>
@@ -1249,7 +1251,7 @@
               <div class="guest-title">日本一マッチョなアナウンサー</div>
             </div>
             <div class="guest-description">
-              YouTubeチャンネル「令和の虎」のMC。<br>ボディービルダーとして活躍する「日本一マッチョなアナウンサー」
+              YouTubeチャンネル<br class="mobile-only">「令和の虎」のMC。ボディービルダーとして活躍する<br class="mobile-only">「日本一マッチョな<br class="mobile-only">アナウンサー」
             </div>
           </div>
         </div>
@@ -1261,7 +1263,7 @@
   <footer class="footer">
     <div class="footer-content">
       <div class="footer-logo">FIT PLACE FESTIVAL 2026</div>
-      <p class="footer-text">2026年3月25日（水）14:00-19:00<br>ベルサール新宿セントラルパーク</p>
+      <p class="footer-text">2026年3月25日(水) 14:00-19:00<br>ベルサール新宿セントラルパーク</p>
       <p class="footer-copyright">&copy; 2026 FIT PLACE. All Rights Reserved.</p>
     </div>
   </footer>
