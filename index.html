@@ -477,34 +477,21 @@
     }
 
     .hero-target {
-      display: inline-block;
-      padding: 30px 50px;
-      background: rgba(0, 0, 0, 0.6);
-      backdrop-filter: blur(20px);
-      border: 2px solid rgba(204, 254, 64, 0.3);
-      border-radius: 25px;
       font-size: clamp(14px, 1.5vw, 18px);
       font-weight: 700;
       letter-spacing: 0.15em;
-      color: rgba(255, 255, 255, 0.95);
+      color: rgba(204, 254, 64, 0.9);
       line-height: 1.8;
       text-align: center;
-      box-shadow: 0 0 40px rgba(204, 254, 64, 0.2), inset 0 0 30px rgba(204, 254, 64, 0.05);
-      transition: all 0.4s;
-    }
-
-    .hero-target:hover {
-      border-color: rgba(204, 254, 64, 0.6);
-      box-shadow: 0 0 60px rgba(204, 254, 64, 0.35), inset 0 0 40px rgba(204, 254, 64, 0.08);
-      transform: translateY(-3px);
+      margin-top: 40px;
     }
     
     @media (max-width: 480px) {
       .hero-target {
-        padding: 20px 30px;
         font-size: 12px;
         letter-spacing: 0.1em;
         line-height: 1.7;
+        margin-top: 30px;
       }
     }
 
@@ -954,6 +941,220 @@
       line-height: 1.5;
     }
 
+    /* Pricing Section */
+    .pricing-section {
+      position: relative;
+      padding: 150px 40px;
+      background: #000;
+      overflow: hidden;
+    }
+
+    .pricing-section .section-bg {
+      background-image: url('image/五反田.webp');
+      opacity: 0.15;
+    }
+
+    .pricing-section .orb {
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(204, 254, 64, 0.18), transparent);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .pricing-container {
+      position: relative;
+      z-index: 10;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .pricing-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 40px;
+      margin-bottom: 80px;
+    }
+
+    .pricing-card {
+      background: rgba(5, 5, 10, 0.95);
+      border: 2px solid rgba(204, 254, 64, 0.2);
+      border-radius: 30px;
+      padding: 50px 40px;
+      text-align: center;
+      transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pricing-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, transparent, rgba(204, 254, 64, 0.03));
+      opacity: 0;
+      transition: opacity 0.5s;
+    }
+
+    .pricing-card:hover {
+      border-color: rgba(204, 254, 64, 0.6);
+      box-shadow: 0 20px 80px rgba(204, 254, 64, 0.3);
+      transform: translateY(-10px);
+    }
+
+    .pricing-card:hover::before {
+      opacity: 1;
+    }
+
+    .pricing-label {
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(204, 254, 64, 0.7);
+      margin-bottom: 20px;
+    }
+
+    .pricing-condition {
+      font-size: clamp(18px, 2vw, 24px);
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: #fff;
+      margin-bottom: 30px;
+      line-height: 1.6;
+    }
+
+    .pricing-amount {
+      font-family: "Bebas Neue", sans-serif;
+      font-size: clamp(56px, 7vw, 96px);
+      letter-spacing: 0.1em;
+      line-height: 1;
+      background: linear-gradient(135deg, #ccfe40, #fff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 15px;
+      filter: drop-shadow(0 0 30px rgba(204, 254, 64, 0.4));
+    }
+
+    .pricing-per {
+      font-size: clamp(16px, 1.8vw, 22px);
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      color: rgba(204, 254, 64, 0.8);
+    }
+
+    .pricing-info {
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(20px);
+      border: 2px solid rgba(204, 254, 64, 0.25);
+      border-radius: 25px;
+      padding: 40px 50px;
+      text-align: center;
+      box-shadow: 0 0 40px rgba(204, 254, 64, 0.15);
+      transition: all 0.4s;
+    }
+
+    .pricing-info:hover {
+      border-color: rgba(204, 254, 64, 0.5);
+      box-shadow: 0 0 60px rgba(204, 254, 64, 0.25);
+    }
+
+    .pricing-info-item {
+      margin-bottom: 35px;
+    }
+
+    .pricing-info-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .pricing-info-label {
+      font-size: clamp(14px, 1.5vw, 18px);
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(204, 254, 64, 0.8);
+      margin-bottom: 12px;
+    }
+
+    .pricing-info-value {
+      font-size: clamp(18px, 2.2vw, 28px);
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      color: #fff;
+      line-height: 1.6;
+    }
+
+    .pricing-note {
+      font-size: clamp(14px, 1.5vw, 18px);
+      line-height: 1.9;
+      color: rgba(255, 255, 255, 0.85);
+      letter-spacing: 0.08em;
+      margin-top: 50px;
+      padding: 30px;
+      background: rgba(204, 254, 64, 0.05);
+      border-radius: 20px;
+      border: 1px solid rgba(204, 254, 64, 0.15);
+    }
+
+    @media (max-width: 768px) {
+      .pricing-section {
+        padding: 100px 30px;
+      }
+
+      .pricing-cards {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        margin-bottom: 60px;
+      }
+
+      .pricing-card {
+        padding: 40px 30px;
+      }
+
+      .pricing-info {
+        padding: 30px 35px;
+      }
+
+      .pricing-info-item {
+        margin-bottom: 28px;
+      }
+
+      .pricing-note {
+        margin-top: 40px;
+        padding: 25px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .pricing-card {
+        padding: 35px 25px;
+      }
+
+      .pricing-condition {
+        font-size: 16px;
+        margin-bottom: 25px;
+      }
+
+      .pricing-info {
+        padding: 25px 30px;
+      }
+
+      .pricing-info-item {
+        margin-bottom: 25px;
+      }
+
+      .pricing-note {
+        font-size: 13px;
+        line-height: 1.8;
+        padding: 20px;
+      }
+    }
+
     /* Guest Section */
     .guest-section {
       position: relative;
@@ -1003,7 +1204,7 @@
     .guest-carousel-wrapper {
       position: relative;
       overflow: visible;
-      padding: 60px 0 80px;
+      padding: 60px 0 40px;
     }
 
     .guest-carousel {
@@ -1062,9 +1263,9 @@
     }
 
     .guest-card:hover {
-  border-color: rgba(204, 254, 64, 0.7);
-  box-shadow: 0 0 100px rgba(204, 254, 64, 0.4);
-}
+      border-color: rgba(204, 254, 64, 0.7);
+      box-shadow: 0 0 100px rgba(204, 254, 64, 0.4);
+    }
 
     .guest-card:hover::before {
       opacity: 1;
@@ -1180,30 +1381,6 @@
       color: rgba(255, 255, 255, 0.8);
       letter-spacing: 0.05em;
       margin-top: 12px;
-    }
-
-    .carousel-nav {
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      margin-top: 30px;
-    }
-
-    .carousel-dot {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: rgba(204, 254, 64, 0.2);
-      border: 2px solid rgba(204, 254, 64, 0.4);
-      cursor: pointer;
-      transition: all 0.3s;
-    }
-
-    .carousel-dot.active {
-      background: #ccfe40;
-      border-color: #ccfe40;
-      box-shadow: 0 0 15px rgba(204, 254, 64, 0.6);
-      transform: scale(1.2);
     }
 
     @media (max-width: 1200px) {
@@ -1479,6 +1656,7 @@
           <li><a href="#about" class="nav-link">About</a></li>
           <li><a href="#ceo" class="nav-link">CEO Message</a></li>
           <li><a href="#benefits" class="nav-link">Benefits</a></li>
+          <li><a href="#pricing" class="nav-link">Pricing</a></li>
           <li><a href="#guests" class="nav-link">Guests</a></li>
         </ul>
       </nav>
@@ -1526,10 +1704,10 @@
           東京都新宿区西新宿6丁目13−1<br>
           住友不動産新宿セントラルパークビル
         </div>
-      </div>
-
-      <div class="hero-target keep-all">
-        FIT PLACEに関わる全ての方へ
+        
+        <div class="hero-target keep-all">
+          FIT PLACEに関わる全ての方へ
+        </div>
       </div>
     </div>
   </section>
@@ -1670,6 +1848,43 @@
     </div>
   </section>
 
+  <!-- Pricing Section -->
+  <section class="pricing-section" id="pricing">
+    <div class="section-bg"></div>
+    <div class="orb"></div>
+    
+    <h2 class="section-title">PRICING</h2>
+    
+    <div class="pricing-container">
+      <div class="pricing-cards">
+        <div class="pricing-card scroll-animate fade-in-up delay-1">
+          <div class="pricing-label">Standard</div>
+          <div class="pricing-condition">1社あたり<br>5名以下の場合</div>
+          <div class="pricing-amount">¥15,000</div>
+          <div class="pricing-per">/ 人</div>
+        </div>
+        
+        <div class="pricing-card scroll-animate fade-in-up delay-2">
+          <div class="pricing-label">Group Discount</div>
+          <div class="pricing-condition">1社あたり<br>6人目以降</div>
+          <div class="pricing-amount">¥10,000</div>
+          <div class="pricing-per">/ 人</div>
+        </div>
+      </div>
+      
+      <div class="pricing-info scroll-animate fade-in-up delay-3">
+        <div class="pricing-info-item">
+          <div class="pricing-info-label">申込締切</div>
+          <div class="pricing-info-value">2026年1月30日(金)</div>
+        </div>
+        <div class="pricing-info-item">
+          <div class="pricing-info-label">お申込み方法</div>
+          <div class="pricing-info-value">本部担当スタッフへ<br>お申し付けください</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Guest Section -->
   <section class="guest-section" id="guests">
     <div class="section-bg"></div>
@@ -1770,14 +1985,6 @@
           </div>
         </div>
       </div>
-
-      <div class="carousel-nav" id="carouselNav">
-        <div class="carousel-dot active" data-index="0"></div>
-        <div class="carousel-dot" data-index="1"></div>
-        <div class="carousel-dot" data-index="2"></div>
-        <div class="carousel-dot" data-index="3"></div>
-        <div class="carousel-dot" data-index="4"></div>
-      </div>
     </div>
   </section>
 
@@ -1857,7 +2064,6 @@
 
     // Guest Carousel functionality
     const carousel = document.getElementById('guestCarousel');
-    const dots = document.querySelectorAll('.carousel-dot');
     
     let isDown = false;
     let startX;
@@ -1887,33 +2093,6 @@
       const x = e.pageX - carousel.offsetLeft;
       const walk = (x - startX) * 2;
       carousel.scrollLeft = scrollLeft - walk;
-    });
-
-    // Update active dot based on scroll position
-    carousel.addEventListener('scroll', () => {
-      const scrollPosition = carousel.scrollLeft;
-      const cardWidth = carousel.querySelector('.guest-card').offsetWidth + 40; // card width + gap
-      const activeIndex = Math.round(scrollPosition / cardWidth);
-      
-      dots.forEach((dot, index) => {
-        if (index === activeIndex) {
-          dot.classList.add('active');
-        } else {
-          dot.classList.remove('active');
-        }
-      });
-    });
-
-    // Dot click navigation
-    dots.forEach(dot => {
-      dot.addEventListener('click', () => {
-        const index = parseInt(dot.dataset.index);
-        const cardWidth = carousel.querySelector('.guest-card').offsetWidth + 40;
-        carousel.scrollTo({
-          left: cardWidth * index,
-          behavior: 'smooth'
-        });
-      });
     });
   </script>
 
