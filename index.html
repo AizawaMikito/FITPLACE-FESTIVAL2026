@@ -1,0 +1,1922 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FIT PLACE FESTIVAL 2026 | フィットプレイス フェスティバル</title>
+  <link rel="icon" type="image/png" href="image/favicon.ico">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=Bebas+Neue&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: #000;
+      font-family: "Inter", "Noto Sans JP", sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* Responsive line break utilities */
+    .pc-only {
+      display: inline;
+    }
+
+    .mobile-only {
+      display: none;
+    }
+
+    /* Natural line break helper */
+    .keep-all {
+      word-break: keep-all;
+      overflow-wrap: anywhere;
+    }
+
+    @media (max-width: 768px) {
+      .pc-only {
+        display: none;
+      }
+      .mobile-only {
+        display: inline;
+      }
+      
+      /* Optimize text for mobile */
+      br.pc-only {
+        display: none;
+      }
+      
+      .hero-title {
+        word-break: keep-all;
+        overflow-wrap: anywhere;
+      }
+    }
+
+    /* Header Navigation */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(204, 254, 64, 0.1);
+      transition: all 0.3s;
+    }
+
+    .header.scrolled {
+      background: rgba(0, 0, 0, 0.95);
+      border-bottom-color: rgba(204, 254, 64, 0.3);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .header-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 80px;
+    }
+
+    .header-logo {
+      font-family: "Bebas Neue", sans-serif;
+      font-size: 24px;
+      letter-spacing: 0.15em;
+      background: linear-gradient(135deg, #ccfe40, #fff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+
+    .header-logo:hover {
+      filter: drop-shadow(0 0 10px rgba(204, 254, 64, 0.5));
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: 40px;
+      list-style: none;
+    }
+
+    .nav-link {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: all 0.3s;
+      position: relative;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #ccfe40;
+      transition: width 0.3s;
+    }
+
+    .nav-link:hover {
+      color: #ccfe40;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 5px;
+    }
+
+    .mobile-menu-btn span {
+      display: block;
+      width: 25px;
+      height: 3px;
+      background: #ccfe40;
+      margin: 5px 0;
+      transition: all 0.3s;
+    }
+
+    .mobile-menu-btn.active span:nth-child(1) {
+      transform: rotate(45deg) translate(8px, 8px);
+    }
+
+    .mobile-menu-btn.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .mobile-menu-btn.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(7px, -7px);
+    }
+
+    @keyframes gridMove {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(60px); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 0.6; }
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes slideInRight {
+      from {
+        opacity: 0;
+        transform: translateX(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    /* Scroll Animation Classes */
+    .scroll-animate {
+      opacity: 0;
+    }
+
+    .scroll-animate.animated {
+      animation-duration: 0.8s;
+      animation-fill-mode: forwards;
+      animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .fade-in-up.animated {
+      animation-name: fadeInUp;
+    }
+
+    .slide-in-left.animated {
+      animation-name: slideInLeft;
+    }
+
+    .slide-in-right.animated {
+      animation-name: slideInRight;
+    }
+
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.2s; }
+    .delay-3 { animation-delay: 0.3s; }
+    .delay-4 { animation-delay: 0.4s; }
+
+    .bg-grid {
+      position: absolute;
+      top: -100%;
+      left: 0;
+      width: 100%;
+      height: 200%;
+      background-image: 
+        linear-gradient(rgba(204, 254, 64, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(204, 254, 64, 0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      animation: gridMove 20s linear infinite;
+      pointer-events: none;
+      opacity: 0.4;
+    }
+
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(120px);
+      pointer-events: none;
+      animation: pulse 6s ease-in-out infinite;
+    }
+
+    .section-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      opacity: 0.4;
+      z-index: 0;
+    }
+
+    .section-bg::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.7) 100%);
+    }
+
+    /* Hero Section */
+    .hero-section {
+      position: relative;
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: #000;
+      padding-top: 80px;
+    }
+
+    .hero-section .section-bg {
+      background-image: url('image/集合写真.png');
+    }
+
+    .hero-section .orb1 {
+      width: 700px;
+      height: 700px;
+      background: radial-gradient(circle, rgba(204, 254, 64, 0.25), transparent);
+      top: -250px;
+      left: -200px;
+    }
+
+    .hero-section .orb2 {
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(204, 254, 64, 0.15), transparent);
+      bottom: -200px;
+      right: -200px;
+      animation-delay: 3s;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      padding: 60px 40px;
+      max-width: 1400px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      animation: fadeInUp 1s ease-out;
+    }
+
+    .hero-title {
+      font-family: "Bebas Neue", sans-serif;
+      font-size: clamp(64px, 12vw, 180px);
+      letter-spacing: 0.15em;
+      margin-bottom: 40px;
+      background: linear-gradient(135deg, #ccfe40 0%, #fff 40%, #ccfe40 70%, #fff 100%);
+      background-size: 200% 200%;
+      animation: gradientShift 8s ease infinite;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 0 60px rgba(204, 254, 64, 0.6)) drop-shadow(0 0 100px rgba(204, 254, 64, 0.3));
+      line-height: 0.9;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+    
+    @media (max-width: 375px) {
+      .hero-title {
+        font-size: 56px;
+        letter-spacing: 0.1em;
+      }
+    }
+
+    .hero-subtitle {
+      font-size: clamp(14px, 2vw, 20px);
+      font-weight: 700;
+      letter-spacing: 0.5em;
+      color: rgba(204, 254, 64, 0.7);
+      margin-bottom: 80px;
+      text-transform: uppercase;
+      order: -1;
+    }
+
+    .hero-main-info {
+      display: inline-block;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(30px);
+      border: 2px solid rgba(204, 254, 64, 0.4);
+      border-radius: 30px;
+      padding: 50px 80px;
+      margin: 50px 0;
+      box-shadow: 0 0 80px rgba(204, 254, 64, 0.25), inset 0 0 40px rgba(204, 254, 64, 0.05);
+      transition: all 0.5s;
+    }
+
+    .hero-main-info:hover {
+      border-color: rgba(204, 254, 64, 0.7);
+      box-shadow: 0 0 120px rgba(204, 254, 64, 0.4), inset 0 0 60px rgba(204, 254, 64, 0.1);
+      transform: translateY(-5px);
+    }
+
+    .hero-date {
+      font-family: "Bebas Neue", sans-serif;
+      font-size: clamp(40px, 5vw, 80px);
+      font-weight: 900;
+      letter-spacing: 0.2em;
+      color: #fff;
+      margin-bottom: 20px;
+      text-shadow: 0 0 40px rgba(204, 254, 64, 0.5);
+    }
+
+    .hero-time {
+      font-size: clamp(18px, 2vw, 28px);
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      color: #ccfe40;
+      margin-bottom: 10px;
+    }
+
+    .hero-reception {
+      font-size: clamp(14px, 1.5vw, 18px);
+      letter-spacing: 0.1em;
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 25px;
+      padding-bottom: 25px;
+      border-bottom: 1px solid rgba(204, 254, 64, 0.2);
+    }
+
+    .hero-parts {
+      display: flex;
+      gap: 40px;
+      justify-content: center;
+      margin-bottom: 25px;
+    }
+
+    .hero-part {
+      text-align: center;
+    }
+
+    .hero-part-label {
+      font-size: clamp(12px, 1.2vw, 16px);
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      color: rgba(204, 254, 64, 0.8);
+      margin-bottom: 10px;
+      text-transform: uppercase;
+    }
+
+    .hero-part-time {
+      font-size: clamp(16px, 1.8vw, 24px);
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: #fff;
+    }
+
+    @media (max-width: 480px) {
+      .hero-parts {
+        flex-direction: column;
+        gap: 20px;
+      }
+    }
+
+    .hero-location {
+      font-size: clamp(20px, 2.5vw, 36px);
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      color: #fff;
+      margin-top: 25px;
+      padding-top: 25px;
+      border-top: 1px solid rgba(204, 254, 64, 0.3);
+    }
+
+    .hero-location-sub {
+      font-size: clamp(14px, 1.5vw, 20px);
+      color: rgba(204, 254, 64, 0.6);
+      margin-top: 10px;
+      letter-spacing: 0.15em;
+      line-height: 1.6;
+    }
+    
+    @media (max-width: 480px) {
+      .hero-location-sub {
+        font-size: 12px;
+        letter-spacing: 0.08em;
+        line-height: 1.7;
+      }
+    }
+
+    .hero-target {
+      display: inline-block;
+      padding: 30px 50px;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(20px);
+      border: 2px solid rgba(204, 254, 64, 0.3);
+      border-radius: 25px;
+      font-size: clamp(14px, 1.5vw, 18px);
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      color: rgba(255, 255, 255, 0.95);
+      line-height: 1.8;
+      text-align: center;
+      box-shadow: 0 0 40px rgba(204, 254, 64, 0.2), inset 0 0 30px rgba(204, 254, 64, 0.05);
+      transition: all 0.4s;
+    }
+
+    .hero-target:hover {
+      border-color: rgba(204, 254, 64, 0.6);
+      box-shadow: 0 0 60px rgba(204, 254, 64, 0.35), inset 0 0 40px rgba(204, 254, 64, 0.08);
+      transform: translateY(-3px);
+    }
+    
+    @media (max-width: 480px) {
+      .hero-target {
+        padding: 20px 30px;
+        font-size: 12px;
+        letter-spacing: 0.1em;
+        line-height: 1.7;
+      }
+    }
+
+    /* About Section */
+    .about-section {
+      position: relative;
+      padding: 150px 40px;
+      background: #000;
+      overflow: hidden;
+    }
+
+    .about-section .section-bg {
+      background-image: url('image/五反田.webp');
+    }
+
+    .about-section .orb {
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(204, 254, 64, 0.2), transparent);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .section-title {
+      font-family: "Bebas Neue", sans-serif;
+      font-size: clamp(48px, 6vw, 96px);
+      letter-spacing: 0.2em;
+      text-align: center;
+      margin-bottom: 80px;
+      background: linear-gradient(135deg, #ccfe40 0%, #fff 50%, #ccfe40 100%);
+      background-size: 200% 200%;
+      animation: gradientShift 8s ease infinite;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      position: relative;
+      z-index: 10;
+      filter: drop-shadow(0 0 30px rgba(204, 254, 64, 0.3));
+    }
+
+    .about-content {
+      position: relative;
+      z-index: 10;
+      max-width: 1000px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .about-text {
+      font-size: clamp(14px, 2vw, 22px);
+      line-height: 2.2;
+      color: rgba(255, 255, 255, 0.95);
+      letter-spacing: 0.1em;
+      margin-bottom: 40px;
+      text-shadow: 0 2px 15px rgba(0, 0, 0, 0.9);
+    }
+
+    .about-text:last-of-type {
+      margin-bottom: 0;
+    }
+
+    .about-list {
+      font-size: clamp(14px, 2vw, 22px);
+      line-height: 2.2;
+      color: rgba(255, 255, 255, 0.95);
+      letter-spacing: 0.1em;
+      margin-bottom: 40px;
+      text-shadow: 0 2px 15px rgba(0, 0, 0, 0.9);
+      text-align: left;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .about-highlight {
+      font-size: clamp(18px, 2.8vw, 36px);
+      font-weight: 900;
+      color: #ccfe40;
+      margin-top: 60px;
+      letter-spacing: 0.15em;
+      text-shadow: 0 0 40px rgba(204, 254, 64, 0.6);
+    }
+
+    /* Small screen optimization for About section */
+    @media (max-width: 480px) {
+      .about-section {
+        padding: 100px 30px;
+      }
+
+      .about-text {
+        font-size: 13px;
+        line-height: 2;
+        letter-spacing: 0.06em;
+        margin-bottom: 28px;
+      }
+
+      .about-list {
+        font-size: 13px;
+        line-height: 2;
+        letter-spacing: 0.06em;
+        margin-bottom: 28px;
+      }
+
+      .about-highlight {
+        font-size: 16px;
+        margin-top: 40px;
+        letter-spacing: 0.1em;
+      }
+    }
+
+    @media (max-width: 375px) {
+      .about-section {
+        padding: 90px 25px;
+      }
+
+      .about-text {
+        font-size: 12px;
+        line-height: 1.95;
+        letter-spacing: 0.05em;
+        margin-bottom: 25px;
+      }
+
+      .about-list {
+        font-size: 12px;
+        line-height: 1.95;
+        letter-spacing: 0.05em;
+        margin-bottom: 25px;
+      }
+
+      .about-highlight {
+        font-size: 15px;
+        margin-top: 35px;
+        letter-spacing: 0.08em;
+      }
+    }
+
+    /* CEO Message Section */
+    .ceo-section {
+      position: relative;
+      padding: 150px 40px;
+      background: #000;
+      overflow: hidden;
+    }
+
+    .ceo-section .section-bg {
+      background-image: url('image/五反田.webp');
+      opacity: 0.2;
+    }
+
+    .ceo-section .orb {
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(204, 254, 64, 0.15), transparent);
+      top: 50%;
+      right: -200px;
+      transform: translateY(-50%);
+    }
+
+    .ceo-container {
+      position: relative;
+      z-index: 10;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .ceo-content {
+      display: flex;
+      gap: 80px;
+      align-items: center;
+      background: rgba(5, 5, 10, 0.9);
+      border-radius: 30px;
+      padding: 80px;
+      border: 2px solid rgba(204, 254, 64, 0.2);
+      box-shadow: 0 0 80px rgba(0, 0, 0, 0.9);
+      transition: all 0.5s;
+    }
+
+    .ceo-content:hover {
+      border-color: rgba(204, 254, 64, 0.4);
+      box-shadow: 0 0 100px rgba(204, 254, 64, 0.2);
+    }
+
+    .ceo-image-wrapper {
+      flex-shrink: 0;
+      width: 400px;
+      height: 500px;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 3px solid rgba(204, 254, 64, 0.3);
+      box-shadow: 0 0 40px rgba(204, 254, 64, 0.2);
+      transition: all 0.5s;
+    }
+
+    .ceo-content:hover .ceo-image-wrapper {
+      border-color: rgba(204, 254, 64, 0.6);
+      box-shadow: 0 0 60px rgba(204, 254, 64, 0.4);
+    }
+
+    .ceo-image-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 10%;
+      filter: brightness(0.9) contrast(1.1);
+      transition: all 0.5s;
+    }
+
+    .ceo-content:hover .ceo-image-wrapper img {
+      filter: brightness(1) contrast(1.2);
+      transform: scale(1.05);
+    }
+
+    .ceo-message {
+      flex: 1;
+    }
+
+    .ceo-label {
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: rgba(204, 254, 64, 0.7);
+      margin-bottom: 20px;
+    }
+
+    .ceo-title {
+      font-family: "Bebas Neue", sans-serif;
+      font-size: clamp(36px, 4vw, 64px);
+      letter-spacing: 0.15em;
+      margin-bottom: 15px;
+      background: linear-gradient(135deg, #ccfe40, #fff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1.2;
+    }
+
+    .ceo-name {
+      font-size: clamp(18px, 2vw, 28px);
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      color: #fff;
+      margin-bottom: 40px;
+      padding-bottom: 30px;
+      border-bottom: 1px solid rgba(204, 254, 64, 0.2);
+    }
+
+    .ceo-text {
+      font-size: clamp(14px, 1.6vw, 20px);
+      line-height: 2;
+      color: rgba(255, 255, 255, 0.9);
+      letter-spacing: 0.08em;
+      margin-bottom: 25px;
+    }
+
+    .ceo-signature {
+      font-family: "Bebas Neue", sans-serif;
+      font-size: clamp(20px, 2.2vw, 32px);
+      letter-spacing: 0.2em;
+      color: #ccfe40;
+      margin-top: 40px;
+      text-align: right;
+    }
+
+    @media (max-width: 1024px) {
+      .ceo-content {
+        flex-direction: column;
+        padding: 60px 50px;
+        gap: 50px;
+      }
+
+      .ceo-image-wrapper {
+        width: 100%;
+        max-width: 400px;
+        height: 450px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .ceo-section {
+        padding: 100px 30px;
+      }
+
+      .ceo-content {
+        padding: 40px 30px;
+        gap: 40px;
+      }
+
+      .ceo-image-wrapper {
+        height: 400px;
+      }
+
+      .ceo-text {
+        line-height: 1.9;
+        margin-bottom: 20px;
+      }
+
+      .ceo-signature {
+        margin-top: 30px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .ceo-content {
+        padding: 30px 25px;
+        gap: 30px;
+      }
+
+      .ceo-image-wrapper {
+        height: 350px;
+      }
+
+      .ceo-name {
+        margin-bottom: 30px;
+        padding-bottom: 20px;
+      }
+
+      .ceo-text {
+        font-size: 13px;
+        line-height: 1.8;
+      }
+    }
+
+    /* Benefits Section */
+    .benefits-section {
+      position: relative;
+      padding: 120px 40px;
+      background: #000;
+      overflow: hidden;
+    }
+
+    .benefits-section .section-bg {
+      background-image: url('image/青葉台.avif');
+    }
+
+    .benefit-card {
+      position: relative;
+      max-width: 1400px;
+      margin: 0 auto 60px;
+      border-radius: 30px;
+      overflow: hidden;
+      background: linear-gradient(135deg, rgba(10, 10, 10, 0.95) 0%, rgba(5, 5, 5, 0.98) 100%);
+      border: 2px solid rgba(204, 254, 64, 0.2);
+      transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: 0 20px 80px rgba(0, 0, 0, 0.9);
+    }
+
+    .benefit-card:hover {
+      border-color: rgba(204, 254, 64, 0.6);
+      box-shadow: 0 30px 100px rgba(204, 254, 64, 0.3);
+      transform: translateY(-10px);
+    }
+
+    .benefit-card:last-child {
+      margin-bottom: 0;
+    }
+
+    .benefit-inner {
+      display: flex;
+      flex-direction: row;
+      position: relative;
+      min-height: 450px;
+    }
+
+    .benefit-image {
+      position: relative;
+      width: 50%;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .benefit-image::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.3) 80%, rgba(0, 0, 0, 0.7) 100%);
+      z-index: 1;
+    }
+
+    .benefit-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+      display: block;
+      transition: transform 0.8s;
+      filter: brightness(0.8) contrast(1.1);
+    }
+
+    .benefit-card:first-child .benefit-image img {
+      object-position: center;
+    }
+
+    .benefit-card:hover .benefit-image img {
+      transform: scale(1.1);
+      filter: brightness(0.95) contrast(1.2);
+    }
+
+    .benefit-text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 50px 60px;
+      position: relative;
+      z-index: 10;
+      width: 50%;
+    }
+
+    .benefit-number {
+      font-family: "Bebas Neue", sans-serif;
+      font-size: 80px;
+      letter-spacing: 0.1em;
+      line-height: 1;
+      margin-bottom: 15px;
+      background: linear-gradient(135deg, #ccfe40, rgba(204, 254, 64, 0.3));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      opacity: 0.25;
+    }
+
+    .benefit-title {
+      font-family: "Bebas Neue", sans-serif;
+      font-size: clamp(32px, 3.5vw, 56px);
+      letter-spacing: 0.15em;
+      margin-bottom: 30px;
+      color: #fff;
+      line-height: 1.1;
+    }
+
+    .benefit-description {
+      font-size: clamp(14px, 1.5vw, 19px);
+      line-height: 2.2;
+      color: rgba(255, 255, 255, 0.95);
+      letter-spacing: 0.05em;
+      margin-bottom: 0;
+    }
+
+    .benefit-highlight {
+      font-size: clamp(17px, 2vw, 26px);
+      font-weight: 900;
+      color: #ccfe40;
+      letter-spacing: 0.08em;
+      margin-top: 25px;
+      text-shadow: 0 0 25px rgba(204, 254, 64, 0.5);
+      line-height: 1.5;
+    }
+
+    /* Guest Section */
+    .guest-section {
+      position: relative;
+      padding: 150px 40px;
+      background: #000;
+      overflow: visible;
+    }
+
+    .guest-section .section-bg {
+      background-image: url('image/大森.avif');
+      opacity: 0.2;
+    }
+
+    .guest-section .bg-grid {
+      opacity: 0.2;
+    }
+
+    .guest-section .orb1 {
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(204, 254, 64, 0.2), transparent);
+      top: -150px;
+      left: -150px;
+    }
+
+    .guest-section .orb2 {
+      width: 450px;
+      height: 450px;
+      background: radial-gradient(circle, rgba(204, 254, 64, 0.15), transparent);
+      bottom: -100px;
+      right: -100px;
+      animation-delay: 3s;
+    }
+
+    .guest-container {
+      position: relative;
+      z-index: 10;
+      max-width: 1600px;
+      margin: 0 auto;
+    }
+
+    .guest-header {
+      text-align: center;
+      margin-bottom: 80px;
+    }
+
+    .guest-carousel-wrapper {
+      position: relative;
+      overflow: visible;
+      padding: 60px 0 80px;
+    }
+
+    .guest-carousel {
+      display: flex;
+      gap: 40px;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      padding: 0 calc((100vw - 1600px) / 2);
+    }
+
+    .guest-carousel::-webkit-scrollbar {
+      display: none;
+    }
+
+    @media (max-width: 1600px) {
+      .guest-carousel {
+        padding: 0 40px;
+      }
+    }
+
+    .guest-card {
+      position: relative;
+      flex: 0 0 calc(33.333% - 27px);
+      min-width: 350px;
+      max-width: 450px;
+      border-radius: 30px;
+      overflow: hidden;
+      background: rgba(5, 5, 10, 0.95);
+      border: 2px solid rgba(204, 254, 64, 0.15);
+      transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      cursor: grab;
+      height: 720px;
+      box-shadow: 0 0 40px rgba(204, 254, 64, 0.1);
+      scroll-snap-align: start;
+    }
+
+    .guest-card:active {
+      cursor: grabbing;
+    }
+
+    .guest-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, transparent, rgba(204, 254, 64, 0.05));
+      opacity: 0;
+      transition: opacity 0.5s;
+      z-index: 1;
+    }
+
+    .guest-card:hover {
+  border-color: rgba(204, 254, 64, 0.7);
+  box-shadow: 0 0 100px rgba(204, 254, 64, 0.4);
+}
+
+    .guest-card:hover::before {
+      opacity: 1;
+    }
+
+    .guest-image-wrapper {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .guest-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: contrast(1.1) brightness(0.85) saturate(1.2);
+      transition: all 0.5s;
+      pointer-events: none;
+    }
+
+    .guest-card:nth-child(1) img {
+      object-position: center 20%;
+    }
+
+    .guest-card:nth-child(2) img,
+    .guest-card:nth-child(3) img,
+    .guest-card:nth-child(4) img,
+    .guest-card:nth-child(5) img {
+      object-position: center 10%;
+    }
+
+    .guest-card:hover img {
+      filter: contrast(1.2) brightness(1.1) saturate(1.4);
+      transform: scale(1.05);
+    }
+
+    .guest-label {
+      position: absolute;
+      top: 25px;
+      left: 25px;
+      padding: 10px 24px;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      z-index: 2;
+      border: 1px solid rgba(204, 254, 64, 0.5);
+      color: #ccfe40;
+      box-shadow: 0 0 20px rgba(204, 254, 64, 0.3);
+      transition: all 0.3s;
+    }
+
+    .guest-card:hover .guest-label {
+      background: rgba(204, 254, 64, 0.2);
+      border-color: rgba(204, 254, 64, 0.8);
+      box-shadow: 0 0 30px rgba(204, 254, 64, 0.5);
+    }
+
+    .guest-info {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 30px 30px 35px;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.98) 0%, rgba(0, 0, 0, 0.9) 70%, transparent 100%);
+      z-index: 2;
+    }
+
+    .guest-name-en {
+      font-family: "Bebas Neue", sans-serif;
+      font-size: 58px;
+      letter-spacing: 0.15em;
+      line-height: 1.05;
+      margin-bottom: 10px;
+      transition: all 0.3s;
+      background: linear-gradient(135deg, #fff, #ccfe40);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .guest-card:hover .guest-name-en {
+      filter: drop-shadow(0 0 20px rgba(204, 254, 64, 0.5));
+    }
+
+    .guest-name-jp {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 0.3em;
+      color: #e0e0e0;
+      margin-bottom: 15px;
+    }
+
+    .guest-title {
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+      opacity: 0.9;
+      color: #ccfe40;
+    }
+
+    .guest-description {
+      font-size: 13px;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.8);
+      letter-spacing: 0.05em;
+      margin-top: 12px;
+    }
+
+    .carousel-nav {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 30px;
+    }
+
+    .carousel-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: rgba(204, 254, 64, 0.2);
+      border: 2px solid rgba(204, 254, 64, 0.4);
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .carousel-dot.active {
+      background: #ccfe40;
+      border-color: #ccfe40;
+      box-shadow: 0 0 15px rgba(204, 254, 64, 0.6);
+      transform: scale(1.2);
+    }
+
+    @media (max-width: 1200px) {
+      .guest-card {
+        flex: 0 0 calc(50% - 20px);
+        min-width: 320px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .guest-carousel {
+        padding: 0 20px;
+        gap: 20px;
+      }
+
+      .guest-card {
+        flex: 0 0 calc(100% - 40px);
+        min-width: 280px;
+        height: 650px;
+      }
+
+      .guest-name-en {
+        font-size: 48px;
+      }
+
+      .benefit-inner {
+        flex-direction: column;
+      }
+
+      .benefit-image,
+      .benefit-text {
+        width: 100%;
+      }
+
+      .benefit-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+
+      .benefit-image::before {
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.7) 40%, transparent 100%);
+      }
+
+      .benefit-image img {
+        object-position: center 35%;
+      }
+
+      .benefit-text {
+        padding: 40px 35px;
+        position: relative;
+        z-index: 10;
+        background: transparent;
+        min-height: 450px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+      }
+
+      .benefit-number {
+        font-size: 60px;
+        margin-bottom: 12px;
+      }
+
+      .benefit-title {
+        margin-bottom: 22px;
+      }
+
+      .benefit-description {
+        font-size: 14px;
+        line-height: 2;
+        letter-spacing: 0.04em;
+      }
+
+      .benefit-highlight {
+        font-size: 18px;
+        margin-top: 20px;
+        letter-spacing: 0.06em;
+      }
+
+      .benefit-card {
+        margin-bottom: 40px;
+      }
+
+      .benefit-inner {
+        min-height: 550px;
+        position: relative;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .guest-card {
+        height: 600px;
+      }
+
+      .guest-name-en {
+        font-size: 44px;
+      }
+
+      .benefit-image img {
+        object-position: center 40%;
+      }
+
+      .benefit-text {
+        padding: 35px 30px;
+        min-height: 500px;
+      }
+
+      .benefit-number {
+        font-size: 50px;
+        margin-bottom: 10px;
+      }
+
+      .benefit-description {
+        font-size: 13px;
+        line-height: 1.95;
+        letter-spacing: 0.03em;
+      }
+
+      .benefit-highlight {
+        font-size: 16px;
+        margin-top: 18px;
+        letter-spacing: 0.05em;
+      }
+
+      .benefit-card {
+        margin-bottom: 35px;
+      }
+
+      .benefit-inner {
+        min-height: 600px;
+      }
+    }
+
+    /* Footer */
+    .footer {
+      position: relative;
+      padding: 80px 40px 40px;
+      background: #000;
+      border-top: 1px solid rgba(204, 254, 64, 0.2);
+    }
+
+    .footer-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .footer-logo {
+      font-family: "Bebas Neue", sans-serif;
+      font-size: 36px;
+      letter-spacing: 0.15em;
+      background: linear-gradient(135deg, #ccfe40, #fff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 30px;
+    }
+
+    .footer-text {
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.6);
+      letter-spacing: 0.1em;
+      margin-bottom: 20px;
+      line-height: 1.8;
+    }
+
+    .footer-copyright {
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.4);
+      letter-spacing: 0.05em;
+      margin-top: 40px;
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .nav-menu {
+        position: fixed;
+        top: 80px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 80px);
+        background: rgba(0, 0, 0, 0.98);
+        backdrop-filter: blur(20px);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 30px;
+        transition: left 0.3s;
+        border-top: 1px solid rgba(204, 254, 64, 0.2);
+      }
+
+      .nav-menu.active {
+        left: 0;
+      }
+
+      .nav-link {
+        font-size: 18px;
+      }
+
+      .mobile-menu-btn {
+        display: block;
+      }
+
+      .hero-main-info {
+        padding: 40px 50px;
+      }
+
+      .benefit-image {
+        height: auto;
+        min-height: 350px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .header-container {
+        padding: 0 20px;
+      }
+
+      .section-bg {
+        background-attachment: scroll;
+      }
+
+      .hero-main-info {
+        padding: 30px 40px;
+      }
+
+      .about-text {
+        line-height: 2;
+        margin-bottom: 30px;
+      }
+
+      .about-highlight {
+        margin-top: 40px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .header-container {
+        height: 70px;
+      }
+
+      .nav-menu {
+        top: 70px;
+        height: calc(100vh - 70px);
+      }
+
+      .hero-section {
+        padding-top: 70px;
+      }
+
+      .about-text {
+        line-height: 1.9;
+        margin-bottom: 25px;
+      }
+
+      .about-highlight {
+        margin-top: 35px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header Navigation -->
+  <header class="header" id="header">
+    <div class="header-container">
+      <a href="#home" class="header-logo">FIT PLACE FESTIVAL 2026</a>
+      <nav>
+        <ul class="nav-menu" id="navMenu">
+          <li><a href="#home" class="nav-link">Home</a></li>
+          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#ceo" class="nav-link">CEO Message</a></li>
+          <li><a href="#benefits" class="nav-link">Benefits</a></li>
+          <li><a href="#guests" class="nav-link">Guests</a></li>
+        </ul>
+      </nav>
+      <button class="mobile-menu-btn" id="mobileMenuBtn">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section" id="home">
+    <div class="section-bg"></div>
+    <div class="bg-grid"></div>
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
+    
+    <div class="hero-content">
+      <div class="hero-subtitle">The Ultimate Fitness Experience</div>
+      <h1 class="hero-title">
+        FIT PLACE<br>
+        FESTIVAL<br>
+        2026
+      </h1>
+      
+      <div class="hero-main-info">
+        <div class="hero-date">2026.03.25 WED</div>
+        <div class="hero-time">14:00 - 19:00</div>
+        <div class="hero-reception">受付開始 13:00</div>
+        
+        <div class="hero-parts">
+          <div class="hero-part">
+            <div class="hero-part-label">第一部 表彰</div>
+            <div class="hero-part-time">14:00 - 17:00</div>
+          </div>
+          <div class="hero-part">
+            <div class="hero-part-label">第二部 懇親会</div>
+            <div class="hero-part-time">17:00 - 19:00</div>
+          </div>
+        </div>
+        
+        <div class="hero-location">ベルサール新宿<br class="mobile-only">セントラルパーク</div>
+        <div class="hero-location-sub">
+          東京都新宿区西新宿6丁目13−1<br>
+          住友不動産新宿セントラルパークビル
+        </div>
+      </div>
+
+      <div class="hero-target keep-all">
+        FCオーナー様・トレーナー・店舗スタッフ<br>
+        FIT PLACEに関わる全ての方へ
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="about-section" id="about">
+    <div class="section-bg"></div>
+    <div class="orb"></div>
+    
+    <h2 class="section-title">ABOUT THE EVENT</h2>
+    
+    <div class="about-content">
+      <p class="about-text scroll-animate fade-in-up delay-1">
+        日々、お客様の健康と笑顔のために<br>
+        尽力してくださっている<br>
+        全てのFIT PLACE関係者の皆さまへ。
+      </p>
+      <p class="about-text scroll-animate fade-in-up delay-2">
+        FIT PLACE FESTIVAL 2026は<br>
+        皆様の頑張りを讃え<br>
+        仲間と共に新たな挑戦への想いを共有する<br>
+        特別な一日です。
+      </p>
+      <p class="about-text scroll-animate fade-in-up delay-2">
+        業界トップクラスのゲストによる特別セッション<br>
+        激動の1年間の振り返り<br>
+        同じ志を持つ仲間たちとの出会いと交流
+      </p>
+      <p class="about-highlight scroll-animate fade-in-up delay-4">
+        2026年、さらなる高みへ。<br>
+        共に未来を創りましょう
+      </p>
+    </div>
+  </section>
+
+  <!-- CEO Message Section -->
+  <section class="ceo-section" id="ceo">
+    <div class="section-bg"></div>
+    <div class="orb"></div>
+    
+    <h2 class="section-title">CEO MESSAGE</h2>
+    
+    <div class="ceo-container">
+      <div class="ceo-content scroll-animate fade-in-up">
+        <div class="ceo-image-wrapper">
+          <img src="image/山澤さん.jpeg" alt="CEO Photo">
+        </div>
+        <div class="ceo-message">
+          <div class="ceo-label">Representative Director</div>
+          <h3 class="ceo-title">代表取締役<br>メッセージ</h3>
+          <div class="ceo-name"></div>
+          
+          <p class="ceo-text">
+            2025年は多くの挑戦と成長の年でした。<br>
+          </p>
+          <p class="ceo-text">
+            これらの数多くの挑戦・成長は<br>
+            紛れもなく日頃からFIT PLACEを<br>支えてくださる皆様のおかげです。
+          </p>
+          <p class="ceo-text">
+            そして2026年<br>私たちは更なる飛躍を目指します。
+          </p>
+          <p class="ceo-text">
+            このフェスティバルが<br>
+            新たなインスピレーションと<br>
+            出会いの場となることを願っています。
+          </p>
+          
+          <div class="ceo-signature">FIT PLACE 代表取締役<br>山澤 礼明</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits Section -->
+  <section class="benefits-section" id="benefits">
+    <div class="section-bg"></div>
+    
+    <h2 class="section-title">WHY YOU SHOULD JOIN</h2>
+    
+    <!-- Benefit 1 -->
+    <div class="benefit-card scroll-animate slide-in-left">
+      <div class="benefit-inner">
+        <div class="benefit-image">
+          <img src="image/石川さん.png" alt="Award Winners">
+        </div>
+        <div class="benefit-text">
+          <div class="benefit-number">01</div>
+          <h3 class="benefit-title">YOUR EFFORT<br>DESERVES<br>RECOGNITION</h3>
+          <div class="benefit-description">
+            現場で積み重ねてきた行動や成果は<br>
+            当たり前のものではありません。<br><br>
+            忙しい中で向き合ってきた<br>一人ひとりの時間が<br>
+            輝かしい結果を作ってきました。<br><br>
+            このフェスティバルでは<br>
+            結果を出しているトレーナーの<br>「勝ち方」を紹介します。<br><br>
+            なぜ成果が出るのか。<br>何を選び、どう動いているのか。<br><br>
+            その答えは、次の成果だけでなく<br>
+            あなた自身のキャリアの選択肢を<br>確実に広げていきます。
+          </div>
+          <p class="benefit-highlight">
+            行動を、未来の力に変える。
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Benefit 2 -->
+    <div class="benefit-card scroll-animate slide-in-right">
+      <div class="benefit-inner">
+        <div class="benefit-image">
+          <img src="image/お兄さん.png" alt="Training Session">
+        </div>
+        <div class="benefit-text">
+          <div class="benefit-number">02</div>
+          <h3 class="benefit-title">THE FORMULA<br>FOR SUCCESS<br>IS HERE</h3>
+          <div class="benefit-description">
+            うまくいっている店舗には<br>
+            「伸びる型」があります。<br>
+            今回のイベントは、その型を共有し<br><br>
+            成果が出ている店は<br>
+            さらに強くするためのヒントを<br><br>
+            伸び代のある店舗にとっては<br>
+            立て直しのきっかけや打ち手を<br>
+            持ち帰れる場になるはずです。<br><br>
+            イベントを通じて、<br>チームの温度が上がり、<br>
+            空気が変わっていくはずです。<br>
+            数字だけでは動かない<br>「人」と「現場」を<br>
+            次の成長につなげる1日。<br><br>
+            オーナー様にとっても<br>
+            投資価値のある時間になるはずです。
+          </div>
+          <p class="benefit-highlight">
+            型を知れば、店舗が変わる。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Guest Section -->
+  <section class="guest-section" id="guests">
+    <div class="section-bg"></div>
+    <div class="bg-grid"></div>
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
+
+    <div class="guest-container">
+      <div class="guest-header">
+        <h2 class="section-title">SPECIAL GUESTS</h2>
+      </div>
+
+      <div class="guest-carousel-wrapper">
+        <div class="guest-carousel" id="guestCarousel">
+          <div class="guest-card">
+            <div class="guest-image-wrapper">
+              <div class="guest-label">BODY BUILDER</div>
+              <img src="image/扇谷さん.jpg" alt="Kaito Ohgitani">
+            </div>
+            <div class="guest-info">
+              <div>
+                <div class="guest-name-en">KAITO<br>OHGITANI</div>
+                <div class="guest-name-jp">扇谷 開登</div>
+                <div class="guest-title">筋肉界の最終兵器</div>
+              </div>
+              <div class="guest-description keep-all">
+                2025年ボディビル<br class="mobile-only">日本チャンピオン。<br>圧倒的なバルクで他を圧倒する<br class="mobile-only">最強ボディビルダー。
+              </div>
+            </div>
+          </div>
+          
+          <div class="guest-card">
+            <div class="guest-image-wrapper">
+              <div class="guest-label">BODY BUILDER</div>
+              <img src="image/持田さん.png" alt="Kazunori Mochida">
+            </div>
+            <div class="guest-info">
+              <div>
+                <div class="guest-name-en">KAZUNORI<br>MOCHIDA</div>
+                <div class="guest-name-jp">持田 教利</div>
+                <div class="guest-title">力持ちよりおかずもち</div>
+              </div>
+              <div class="guest-description keep-all">
+                並み居る筋トレYouTuberも<br class="mobile-only">こぞってパーソナルを依頼する、<br>日本で最も予約の取れない<br class="mobile-only">パーソナルトレーナー。
+              </div>
+            </div>
+          </div>
+
+          <div class="guest-card">
+            <div class="guest-image-wrapper">
+              <div class="guest-label">MC</div>
+              <img src="image/堀江さん.jpeg" alt="Mina Horie">
+            </div>
+            <div class="guest-info">
+              <div>
+                <div class="guest-name-en">MINA<br>HORIE</div>
+                <div class="guest-name-jp">堀江 聖夏</div>
+                <div class="guest-title">日本一強いアナウンサー</div>
+              </div>
+              <div class="guest-description keep-all">
+                空手初段の黒帯を所持し、<br>瓦割りやハイキックを<br class="mobile-only">披露する動画が話題。<br>SNSの動画総再生数は<br class="mobile-only">4億回超え。
+              </div>
+            </div>
+          </div>
+
+          <div class="guest-card">
+            <div class="guest-image-wrapper">
+              <div class="guest-label">MC</div>
+              <img src="image/雫石さん.jpeg" alt="Masakazu Shizukuishi">
+            </div>
+            <div class="guest-info">
+              <div>
+                <div class="guest-name-en">MASAKAZU<br>SHIZUKUISHI</div>
+                <div class="guest-name-jp">雫石 将克</div>
+                <div class="guest-title">日本一マッチョなアナウンサー</div>
+              </div>
+              <div class="guest-description keep-all">
+                YouTube「令和の虎」のMC。<br>ボディービルダーとしても活躍する<br>日本一マッチョなアナウンサー。
+              </div>
+            </div>
+          </div>
+
+          <div class="guest-card">
+            <div class="guest-image-wrapper">
+              <div class="guest-label">YOUTUBER</div>
+              <img src="image/アクトレさん.png" alt="Guest Name">
+            </div>
+            <div class="guest-info">
+              <div>
+                <div class="guest-name-en">ACTRE<br>VLO0G</div>
+                <div class="guest-name-jp">アクトレブログ</div>
+                <div class="guest-title">バク転Youtuber</div>
+              </div>
+              <div class="guest-description keep-all">
+                元シルクドソレイユのパフォーマー<br>登録者数75万人を誇る筋肉系YouTuber
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="carousel-nav" id="carouselNav">
+        <div class="carousel-dot active" data-index="0"></div>
+        <div class="carousel-dot" data-index="1"></div>
+        <div class="carousel-dot" data-index="2"></div>
+        <div class="carousel-dot" data-index="3"></div>
+        <div class="carousel-dot" data-index="4"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-logo">FIT PLACE FESTIVAL 2026</div>
+      <p class="footer-text">2026年3月25日(水) 14:00-19:00<br>ベルサール新宿セントラルパーク</p>
+      <p class="footer-copyright">&copy; 2026 FIT PLACE. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Header scroll effect
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 100) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const navMenu = document.getElementById('navMenu');
+    
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenuBtn.classList.toggle('active');
+      navMenu.classList.toggle('active');
+    });
+
+    // Close mobile menu when clicking a link
+    const navLinks = document.querySelectorAll('.nav-link');
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenuBtn.classList.remove('active');
+        navMenu.classList.remove('active');
+      });
+    });
+
+    // Smooth scroll offset for fixed header
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          const headerHeight = header.offsetHeight;
+          const targetPosition = target.offsetTop - headerHeight;
+          window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+
+    // Scroll Animation Observer
+    const observerOptions = {
+      threshold: 0.15,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animated');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    // Observe all scroll-animate elements
+    document.querySelectorAll('.scroll-animate').forEach(el => {
+      observer.observe(el);
+    });
+
+    // Guest Carousel functionality
+    const carousel = document.getElementById('guestCarousel');
+    const dots = document.querySelectorAll('.carousel-dot');
+    
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+
+    // Mouse events for drag scrolling
+    carousel.addEventListener('mousedown', (e) => {
+      isDown = true;
+      carousel.style.cursor = 'grabbing';
+      startX = e.pageX - carousel.offsetLeft;
+      scrollLeft = carousel.scrollLeft;
+    });
+
+    carousel.addEventListener('mouseleave', () => {
+      isDown = false;
+      carousel.style.cursor = 'grab';
+    });
+
+    carousel.addEventListener('mouseup', () => {
+      isDown = false;
+      carousel.style.cursor = 'grab';
+    });
+
+    carousel.addEventListener('mousemove', (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - carousel.offsetLeft;
+      const walk = (x - startX) * 2;
+      carousel.scrollLeft = scrollLeft - walk;
+    });
+
+    // Update active dot based on scroll position
+    carousel.addEventListener('scroll', () => {
+      const scrollPosition = carousel.scrollLeft;
+      const cardWidth = carousel.querySelector('.guest-card').offsetWidth + 40; // card width + gap
+      const activeIndex = Math.round(scrollPosition / cardWidth);
+      
+      dots.forEach((dot, index) => {
+        if (index === activeIndex) {
+          dot.classList.add('active');
+        } else {
+          dot.classList.remove('active');
+        }
+      });
+    });
+
+    // Dot click navigation
+    dots.forEach(dot => {
+      dot.addEventListener('click', () => {
+        const index = parseInt(dot.dataset.index);
+        const cardWidth = carousel.querySelector('.guest-card').offsetWidth + 40;
+        carousel.scrollTo({
+          left: cardWidth * index,
+          behavior: 'smooth'
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>
